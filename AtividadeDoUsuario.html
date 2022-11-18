@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--Importação CSS-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <title>Projeto Passagem de Plantao - Ativiadde do usuário</title>
+</head>
+
+<body onload="CarregarAtividade();startTime()">
+    <nav>
+        <a onclick=VoltarPagina()>
+            <img src="imagem/arrow.svg" alt="">
+            <p>Voltar</p>
+        </a>
+        <p>Atividade do Usuário</p>
+        <div class="date">
+            <p id="current_date"></p>
+        </div>
+    </nav>
+
+    <div class="cardUser">
+        <div id="tela" style="display:block;">
+            <div id="dadosDoFuncionario"></div>
+            <div id="resultadoFuncaoAtividade"></div>
+            <input class="button" type="button" id="btnVerRelatorioDeTransferencia"
+                value="Gerar Relatorio de Passagem de Plantão" onclick=CarregarDadosRelatorio()>
+        </div>
+
+        <div id="popup" style="display:none;">
+            <div id="dataHorario"></div>
+            <h3>RELATÓRIO DE PASSAGEM DE PLANTÃO</h3>
+            <div style="text-align:left" id="dadosDoFuncionarioRelatorio">
+            </div>
+            <h4>Atividades Previstas e Comentários:</h4>
+            <div style="text-align:left" id="dadosDoRelatorio">
+            </div><br><br><br>
+
+            <div>
+                <footer>Assinatura do Responsável: ......................................... </footer>
+            </div>
+            <div class="options">
+                <input class="buttonPrint" type="button" id="btnImprimir" value="Imprimir" onclick="window.print();">
+                <input class="buttonQuit" type="button" id="btnSair" value="Sair"
+                    onclick="window.location.href = 'index.html';">
+            </div>
+        </div>
+
+        <!--Importação JavaScript-->
+        <script src="script.js"></script>
+        <script>
+            function VoltarPagina() {
+                var urlParams = new URLSearchParams(window.location.search);
+                var codigopessoa = urlParams.get("codigopessoa");/*captura do valor dogigo pessoa*/
+                var tipo = urlParams.get("tipo"); /*captura  do valor categoria F/C*/
+                window.location.href = "SelecFuncionarios.html?codigopessoa=" + codigopessoa + "&tipo=" + tipo;
+
+            }
+
+            function CarregarAtividade() { /*Metodo de fusão das Equipes a Atividades da parte da manhã*/
+                var urlParams = new URLSearchParams(window.location.search);
+                var codigopessoa = urlParams.get("codigopessoa");
+                var tipo = urlParams.get("tipo");
+                if (tipo == "f") {
+                    var funcaodapessoa = "";
+                    var nomedapessoa = "";
+                    var turnodapessoa = "";
+                    var leitodapessoa = "";
+                    var funcaoAtividade = BuscarArrayAtividadesPorFuncao();
+                    var arrayfuncaodapessoa = BuscarArrayEquipeManha();
+                    for (var i = 0; i <= 14; i++) {
+                        var dadospessoa = arrayfuncaodapessoa[i].split(";");
+                        if (dadospessoa[0] == codigopessoa) {
+                            funcaodapessoa = dadospessoa[2];
+                            nomedapessoa = dadospessoa[1];
+                            leitodapessoa = dadospessoa[4];
+                            turnodapessoa = "Manhã";
+                            break;
+                        }
+                    }
+
+                    if (funcaodapessoa == "") { /*Metodo de fusão das Equipes a Atividades da parte da tarde*/
+                        arrayfuncaodapessoa = BuscarArrayEquipeTarde();
+                        for (var i = 0; i <= 14; i++) {
+                            var dadospessoa = arrayfuncaodapessoa[i].split(";");
+                            if (dadospessoa[0] == codigopessoa) {
+                                funcaodapessoa = dadospessoa[2];
+                                nomedapessoa = dadospessoa[1];
+                                leitodapessoa = dadospessoa[4];
+                                turnodapessoa = "Tarde";
+                                break;
+                            }
+                        }
+
+                    }
+
+                    if (funcaodapessoa == "") { /*Metodo de fusão das Equipes a Atividades da parte da noite*/
+                        arrayfuncaodapessoa = BuscarArrayEquipeNoite();
+                        for (var i = 0; i <= 14; i++) {
+                            var dadospessoa = arrayfuncaodapessoa[i].split(";");
+                            if (dadospessoa[0] == codigopessoa) {
+                                funcaodapessoa = dadospessoa[2];
+                                nomedapessoa = dadospessoa[1];
+                                leitodapessoa = dadospessoa[4];
+                                turnodapessoa = "Noite";
+                                break;
+                            }
+                        }
+
+                    }
+
+                    if (funcaodapessoa != "") {
+
+                        /*Atribuição do "cabeçalho" a linha(tr), Coluna(th)*/
+                        var conteudoFinal = "<table style='width:100%; text-align:left'><tr><th>Atividades Previstas:</th><th>Informe os leitos e o resumo de ocorrencia que se fizer necessário a cada atividade, utilize o ';' como separador.</th>";
+                        for (var i = 0; i <= 14; i++) {
+                            var funcao = funcaoAtividade[i].split(";");/*Atribuição á linha de "dados" (tr) e Coluna(td) especifica*/
+                            /* alert("função1 = "+ funcao[1]+".funcaodapessoa"+funcaodapessoa);*/
+                            if (funcao[1] == funcaodapessoa) {
+                                conteudoFinal += "<tr><td>" + funcao[2] + "</td><td><textarea rows='5' cols='100' id='comentario_" + i + "'></textarea> </td><td><div style='text-align:center'><input class='buttonUser' type='button' onclick=\"armazenarAtividadeComentada('" + codigopessoa + "','" + nomedapessoa + "','" + funcaodapessoa + "','" + funcao[2] + "','" + leitodapessoa + "',document.getElementById('comentario_" + i + "'), this)\" value='Transferir Comentário'></input></div></td></tr>";
+                                //alert(conteudoFinal);
+                            }
+                        } /*Solicita ao HTML localização do componente "resultadoFunçãoAtividade" e incluir "conteudoFinal" dentro dele.*/
+
+                        document.getElementById("resultadoFuncaoAtividade").innerHTML = conteudoFinal + "</table>";
+                        document.getElementById("dadosDoFuncionario").innerHTML = "<p class='relatorio'><b>Nome:</b> " + nomedapessoa + "</p><p class='relatorio'><b>Funcao:</b> " + funcaodapessoa + " - " + turnodapessoa + " - " + leitodapessoa + "</p>";
+                    }
+                }
+            }
+
+            function armazenarAtividadeComentada(codigo, nome, funcao, atividade, leito, objComentario, botaoTransferirComentario) {
+
+                if (objComentario.value != "") {
+                    atividadeComentada += "<p><b>" + atividade + "</b><br/>" + objComentario.value + "</p>";
+                }
+
+                objComentario.setAttribute('disabled', '');
+                botaoTransferirComentario.setAttribute('disabled', '');
+
+            }
+
+            function CarregarDadosRelatorio() { /*Metodo de geração do relatorio de passagem*/
+                document.getElementById("tela").style.display = "none";
+                document.getElementById("popup").style.display = "block";
+                document.getElementById("dadosDoRelatorio").innerHTML = atividadeComentada;
+                document.getElementById("dadosDoFuncionarioRelatorio").innerHTML = document.getElementById("dadosDoFuncionario").innerHTML;
+
+
+            }
+            function VoltarTelaDados() { /*Metodo de geração da impresão relatorio de passagem*/
+                document.getElementById("tela").style.display = "block";
+                document.getElementById("popup").style.display = "none";
+            }
+        </script>
+</body>
+</html>

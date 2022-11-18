@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;500&display=swap" rel="stylesheet">
+
+    <!--Importação CSS-->
+    <link rel="stylesheet" href="style.css">
+    <title>Projeto Passagem de Plantao - Login</title>
+
+<body onload="startTime()">
+    <nav>
+        <p>GCAH</p>
+        <p>Login de Usuário</p>
+        <div class="date">
+            <p id="current_date"></p>
+        </div>
+    </nav>
+    <div>
+        <div class="card">
+            <span>Login:</span>
+            <!--Abertura de acesso a digitação usuário e posicionamento-->
+            <input class="login" type="text" onchange="habilitaBotaoLogin()" text="usuario" id="usuario" width="50px"
+                size="8" maxlength="8" /><br>
+            <span>Password:</span>
+            <!--Abertura de acesso a digitação senha e posicionamento-->
+            <input type="password" onchange="habilitaBotaoLogin()" text="senha" id="senha" width="50px" size="12"
+                maxlength="4" /><br>
+            <!--Botão de Login e posicionamento-->
+            <input disabled="true" class="button" type="button" id="Login" value="Login" width="110px"
+                onclick="Login()" />
+            <br><br>
+            <!--Posicionamento da imagem principal-->
+            <img class="image" src="imagem/pp2.png">
+        </div>
+
+        <div class="info">
+            <p>O <b>GCAH</b> é uma ferramenta de gestão das equipes de Cuidado e Assistência Hospitalar, tem por
+                finalidade assegurar e dar continuidade a realização das atividades bem como, subsidios aos usuarios
+                quanto a ocorrencias anteriores ao inicio de seu plantão, gerando o <b>Relatório de Passagem de
+                    Plantão</b>. <br><br> O <b>GCAH</b> é destinado aos seguintes usuarios: <b>Coordenadores das Equipes
+                    de Enfermagem, Enfermeiros, Técnicos de Enfermagem e Auxiliares Técnicos de Enfermagem</b>.
+            </p>
+        </div>
+
+        <footer>Direitos reservados a equipe de projeto: Sudário Gonçalves, Lucas Marques, Gabriel Galdino, Wesley
+            Cardoso, Gabriel Dorim - 3ºPeriodo - UNA/Contagem - 09/2022
+        </footer>
+    </div>
+
+    <!--Importação JavaScript-->
+    <script src="script.js"></script>
+    <script>
+        function habilitaBotaoLogin() {/*Metodo de habilitação do botão login*/
+            if (document.getElementById('usuario').value != "" && document.getElementById('senha').value != "") {
+                document.getElementById('Login').disabled = false;
+            } else {
+                document.getElementById('Login').disabled = true;
+            }
+        }
+        function Login() { /*Array de verificação do Login no index.js*/
+            var codigopessoa = 0;
+            var arraylogin = BuscarArrayLogin(); /*Login funcionáriosno*/
+            var arrayloginCoordenador = BuscarArrayLoginCoordenadores(); /*Login coordenador*/
+
+            for (var i = 0; i <= 44; i++) { /*Solicita identificação do usuario dentro do array funcionários*/
+                var pessoa = arraylogin[i].split(";");/*Verificando se usuario, senha e codigo são do usuario no array*/
+                if (document.getElementById("usuario").value == pessoa[0] &&
+                    document.getElementById("senha").value == pessoa[1]) {
+                    codigopessoa = pessoa[2];/*Condição não encontrada no array gera reprovação*/
+                    break;
+                }
+            }
+            if (codigopessoa == 0) {
+                for (var i = 0; i <= 2; i++) { /*Solicita identificação do usuario dentro do array coordenador*/
+                    var pessoa = arrayloginCoordenador[i].split(";");/*Verificando usuario, senha e codigo são do usuario no array*/
+                    if (document.getElementById("usuario").value == pessoa[0] &&
+                        document.getElementById("senha").value == pessoa[1]) {
+                        codigopessoa = pessoa[2];/*Condição não encontrada no array gera reprovação*/
+                        break;
+                    }
+                }
+
+            }
+            if (codigopessoa == 0) {
+                alert("Login não encontrado!"); /*Mesagem de Login ou senha incorreta*/
+            }
+            else {
+                if (codigopessoa < 200) /*Condição de acesso ambiente por Login (Coordenador - &tipo=c ou Funcionário - tipo=f).*/
+                    window.location.href = "SelecFuncionarios.html?codigopessoa=" + codigopessoa + "&tipo=f";
+                else
+                    window.location.href = "SelecCoordenacao.html?codigopessoa=" + codigopessoa + "&tipo=c";
+            }
+
+        }
+    </script>
+
+    </head>
+</body>
+
+</html>

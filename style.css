@@ -1,0 +1,290 @@
+/*CSS index de configuração do frontend*/
+html,
+body {
+  background: #fff url(./imagem/doc33.png) center center/cover no-repeat;
+  min-height: 100%;
+}
+
+:root {
+  --button-bg-color: white;
+  --button-hover-color: rgb(199, 199, 199);
+  --card-bg-color: #afd2e9;
+  --border: 2px solid black;
+  --card-bg-color: #acd6d6;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  font-family: "Roboto", sans-serif;
+  display: flex;
+  flex-direction: column;
+}
+
+nav .date {
+  color: #000000;
+  font-size: 1em;
+  padding-right: 15px;
+}
+
+nav p,
+a {
+  padding-left: 15px;
+  cursor: pointer;
+  color: black;
+}
+
+nav a {
+  display: flex;
+}
+
+nav {
+  margin: 0;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  color: black;
+  background-color: #2d74a7;
+  filter: drop-shadow(0px 1px 15px #000);
+  display: flex;
+  justify-content: space-between;
+  box-sizing: border-box;
+  font-weight: bold;
+}
+
+.card {
+  padding-top: 50px;
+  width: 600px;
+  height: auto;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  left: 50%;
+  transform: translateX(-50%);
+  position: relative;
+  margin-top: 110px;
+  background-color: var(--card-bg-color);
+  box-shadow: 0px 15px 30px 3px rgba(0, 0, 0, 0.44);
+  border-radius: 50px;
+}
+
+.card span {
+  font-size: 20px;
+}
+
+.card input {
+  margin-bottom: 10px;
+  padding-left: 10px;
+  font-size: 20px;
+}
+
+.card .image {
+  transform: scale(0.8);
+  border-top-right-radius: 30px;
+  border-bottom-left-radius: 30px;
+}
+
+.button {
+  padding: 5px;
+  color: black;
+  cursor: pointer;
+  background-color: var(--button-bg-color);
+  width: 275px;
+  border-radius: 5px;
+  border: var(--border);
+}
+
+.button:hover, .buttonFunc:hover, .buttonCord:hover {
+  background-color: var(--button-hover-color);
+  transition-duration: 0.3s;
+}
+
+.login {
+  width: 200px;
+}
+
+.cardCoor, .cardCord {
+  padding: 50px 40px 30px 40px;
+  width: 600px;
+  height: auto;
+  text-align: center;
+  left: 50%;
+  transform: translateX(-50%);
+  position: relative;
+  margin-top: 25px;
+  background-color: var(--card-bg-color);
+  margin-top: 30px;
+  margin-bottom: 100px;
+  border-radius: 50px;
+  box-shadow: 0px 15px 30px 3px rgba(0, 0, 0, 0.44);
+}
+
+.infoCoord {
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 40px;
+  width: 700px;
+  font-size: 18px;
+  text-align: center;
+}
+
+.cardCoor .image {
+  transform: scale(0.9);
+  border-radius: 15px;
+  box-shadow: 0px 0px 20px 5px rgba(0, 0, 0, 0.3);
+}
+
+.cardMa {
+  padding: 50px 40px 30px 40px;
+  width: 500px;
+  height: auto;
+  text-align: center;
+  left: 50%;
+  transform: translateX(-50%);
+  position: relative;
+  margin-top: 25px;
+  background-color: var(--card-bg-color);
+  margin-top: 30px;
+  margin-bottom: 100px;
+  border-radius: 50px;
+  box-shadow: 0px 15px 30px 3px rgba(0, 0, 0, 0.44);
+}
+
+.cardEqpCord {
+  text-align: center;
+  margin: 30px auto 30px auto;
+  padding: 15px;
+  background-color: var(--card-bg-color);
+  border-radius: 25px;
+  box-shadow: 0px 15px 30px 9px rgba(0, 0, 0, 0.64);
+}
+
+.cardCord h3 {
+  margin-top: 50px;
+}
+
+.tableCord {
+  width: 800px;
+  text-align: left;
+}
+
+.tableCordAtv {
+  width: 500px;
+  text-align: left;
+}
+
+.buttonCord {
+  padding: 5px;
+  cursor: pointer;
+  background-color: var(--button-bg-color);
+  width: 50px;
+  border-radius: 5px;
+  border: var(--border);
+}
+
+.buttonFunc {
+  padding: 7px;
+  cursor: pointer;
+  background-color: var(--button-bg-color);
+  width: 450px;
+  border-radius: 5px;
+  border: var(--border);
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.buttonUser{
+  padding: 7px;
+  cursor: pointer;
+  background-color: var(--button-bg-color);
+  width: 155px;
+  border-radius: 5px;
+  border: var(--border);
+}
+
+.buttonQuit, .buttonPrint {
+  padding: 5px;
+  cursor: pointer;
+  background-color: var(--button-bg-color);
+  width: 155px;
+  border-radius: 5px;
+  border: var(--border);
+  font-weight: bold;
+}
+
+.buttonQuit {
+  margin-top: 5px;
+}
+
+.options {
+  display: flex;
+  flex-direction: column;
+  justify-content: right;
+  text-align: right;
+  align-items: flex-end;
+  margin-right: 25px;
+}
+
+.cardFunc {
+  padding-top: 50px;
+  width: 600px;
+  height: auto;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  left: 50%;
+  transform: translateX(-50%);
+  position: relative;
+  margin-top: 80px;
+  background-color: var(--card-bg-color);
+  box-shadow: 0px 15px 30px 3px rgba(0, 0, 0, 0.44);
+  border-radius: 50px;
+}
+
+.cardFunc input {
+  margin-bottom: 40px;
+}
+
+#usuario,
+#senha {
+  border-radius: 5px;
+  border: var(--border);
+}
+
+.info {
+  position: relative;
+  top: 10px;
+  margin: 35px;
+  font-size: medium;
+  bottom: 0;
+  text-align: center;
+}
+footer {
+  text-align: center;
+  font-size: small;
+  position: relative;
+  width: 100%;
+  height: 50px;
+}
+
+.cardUser {
+  margin-top: 110px;
+  padding-top: 30px;
+  padding-left: 15px;
+  width: auto;
+  height: auto;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  left: 50%;
+  transform: translateX(-50%);
+  position: relative;
+  background-color: var(--card-bg-color);
+  box-shadow: 0px 15px 30px 3px rgba(0, 0, 0, 0.44);
+  border-radius: 50px;
+  padding-bottom: 15px;
+}
+
+.relatorio {
+  font-size: 18px;
+}

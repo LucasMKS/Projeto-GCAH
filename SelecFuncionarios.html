@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;500&display=swap" rel="stylesheet">
+    <!--Importação CSS-->
+    <link rel="stylesheet" href="style.css">
+    <title>Projeto Passagem de Plantao - Seleção Funcionarios</title>
+</head>
+
+<body onload="startTime()">
+    <nav>
+        <a onclick=VoltarPagina()>
+            <img src="imagem/arrow.svg" alt="">
+            <p>Voltar</p>
+        </a>
+        <p>Funcionários</p>
+        <div class="date">
+            <p id="current_date"></p>
+        </div>
+    </nav>
+
+    <div class="cardFunc">
+            <!--Botão de navegação-->
+            <input class="buttonFunc" type="button" id="GerarRelatorioPP" value="Gerar Relatório de Passagem de Plantão" onclick=GerarRelatorioPP()>
+
+            <!--Imagem principal-->
+            <img class="image" src="imagem/pp2.png">
+            
+        <div class="info">
+        <p>Ola, seja bem vindo!<br>
+            O ambiente <b>Gerar Relatorio de Passagem de Plantão</b> é onde você <b>Enfermeiro</b>, <b>Técnico de Enfermagem</b> e <b>Auxiliar Técnico de
+            Enfermagem</b> irá incluir comentários uteis e indispensaveis á continuidade do Cuidado e Assistência Hospitalar, para conhecimento do
+            plantonista subsequente ao seu plantão. Esta informação será impressa, assinada e repassada a seu substitudo em plantão.</p>
+        </div>
+
+        <main id="copyright"></main>
+    </div>
+    <script src="script.js"></script>
+    <!--Importação JavaScript-->
+    <script> /*Metodo de habilitação a navegação na pagina AtividadeDoUsuario*/
+        function GerarRelatorioPP() {
+            var urlParams = new URLSearchParams(window.location.search);
+            var codigopessoa = urlParams.get("codigopessoa");/*captura do valor propriedade usuario*/
+            var tipo = urlParams.get("tipo"); /*captura  do valor propriedade (categoria Funcionário/Coordenador)*/
+            window.location.href = "AtividadeDoUsuario.html?codigopessoa=" + codigopessoa + "&tipo=" + tipo;
+        }
+
+        function VoltarPagina() {
+            var urlParams = new URLSearchParams(window.location.search);
+            var codigopessoa = urlParams.get("codigopessoa");/*captura do valor propriedade*/
+            var tipo = urlParams.get("tipo"); /*captura  do valor propriedade (categoria Funcionário/Coordenador)*/
+            window.location.href = "index.html?codigopessoa=" + codigopessoa + "&tipo=" + tipo;
+
+        }
+    </script>
+</body>
+
+
+</html>

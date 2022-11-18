@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;500&display=swap" rel="stylesheet">
+    
+    <!--Importação CSS-->
+    <link rel="stylesheet" href="style.css">
+    <title>Projeto Passagem de Plantao - Seleção Coordernador</title>
+</head>
+
+<body onload="startTime()">
+    <nav>   
+        <a onclick=VoltarPagina()>
+            <img src="imagem/arrow.svg" alt="">
+            <p>Voltar</p>
+        </a>
+        <p>Coordenação</p>
+        <div class="date">
+            <p id="current_date"></p>
+        </div>
+    </nav>
+
+    <div class="infoCoord">
+        <p>Ola, seja bem vindo!</p>
+        <p>
+            O ambiente <b>Manutenção das Equipes</b> e <b>Manutenção das Atividades</b> são ambientes de
+            gerenciamento dos usuários e atividades no <b>GCAH</b>, é responsabilidade
+            dos coordenadores das equipes sua manutenção em casos de promoções, realocação ou desligamento do
+            colaborador.</p>
+    </div>
+
+        <div class="cardCoor">
+            <!--Botões de navegação-->
+            <input class="button" type="button" id="btnAlocacaoEquipe" value="Manutenção das Equipes"
+                onclick=ManutencaoEquipe()>
+            <input class="button" type="button" id="CargaAtivEnfermeiro" value="Manutenção das Atividades"
+                onclick=ManutencaoAtividades()>
+            <br><br>
+            <!--Imagem principal-->
+            <img class="image" src="imagem/pp2.png">   
+        </div>
+
+        <footer>Direitos reservados a equipe de projeto: Sudário Gonçalves, Lucas Marques, Gabriel Galdino, Wesley Cardoso, Gabriel Dorim - 3ºPeriodo - UNA/Contagem - 09/2022
+        </footer>
+
+    <!--Importação JavaScript-->
+    <script src="script.js"></script>
+    <script> /*Metodo de habilitação a navegação na pagina CargaEquipeCord*/
+        function ManutencaoEquipe() {
+            var urlParams = new URLSearchParams(window.location.search);
+            var codigopessoa = urlParams.get("codigopessoa");/*captura do valor propriedade usuario*/
+            var tipo = urlParams.get("tipo"); /*captura  do valor propriedade (categoria Funcionário/Coordenador)*/
+            window.location.href = "CargaEquipeCord.html?codigopessoa=" + codigopessoa + "&tipo=" + tipo;
+
+        }
+        /*Metodo de habilitação a navegação na pagina ManutencaoAtividades*/
+        function ManutencaoAtividades() {
+            var urlParams = new URLSearchParams(window.location.search);
+            var codigopessoa = urlParams.get("codigopessoa");/*captura do valor propriedade usuario*/
+            var tipo = urlParams.get("tipo"); /*captura  do valor propriedade (categoria Funcionário/Coordenador)*/
+            window.location.href = "ManutencaoAtividades.html?codigopessoa=" + codigopessoa + "&tipo=" + tipo;
+
+        }
+
+        function VoltarPagina() {
+            var urlParams = new URLSearchParams(window.location.search);
+            var codigopessoa = urlParams.get("codigopessoa");/*captura do valor propriedade usuario*/
+            var tipo = urlParams.get("tipo"); /*captura  do valor propriedade (categoria Funcionário/Coordenador)*/
+            window.location.href = "index.html?codigopessoa=" + codigopessoa + "&tipo=" + tipo;
+
+        }
+    </script>
+</body>
+
+
+</html>

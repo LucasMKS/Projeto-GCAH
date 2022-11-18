@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;500&display=swap" rel="stylesheet">
+    <!--Importação CSS-->
+    <link rel="stylesheet" href="style.css">
+    <title>Projeto Passagem de Plantao - Carga coordenadores</title>
+</head>
+<!--Botão de acionamento automático dos metodos de carregamento.-->
+
+<body onload="carregarEquipeCoordenadores();carregarEquipeManha();carregarEquipeTarde();carregarEquipeNoite();startTime()">
+    <nav>
+        <a onclick=VoltarPagina()>
+            <img src="imagem/arrow.svg" alt="">
+            <p>Voltar</p>
+        </a>
+        <p>Manutenção das equipes</p>
+        <div class="date">
+            <p id="current_date"></p>
+        </div>
+    </nav>
+
+<div class="cardEqpCord">
+    <h3>Equipe de Coordenadores</h3>
+    <div id="resultadoEquipeCoordenadores"></div>
+
+    <h3>Equipe de Plantão Manhã</h3>
+    <div id="resultadoEquipeManha"></div>
+
+    <h3>Equipe de Plantão Tarde</h3>
+    <div id="resultadoEquipeTarde"></div>
+
+    <h3>Equipe de Plantão Noite</h3>
+    <div id="resultadoEquipeNoite"></div>
+</div>
+
+    <!--Importação JavaScript-->
+    <script src="script.js"></script>  
+    <script>
+        /*Função de alocação de equipes atraves de array 15 colaboradores com informações agrupadas*/
+        function carregarEquipeCoordenadores() {
+            var equipetodas = BuscarArrayEquipeCoordenadores();/*Metodo que busca a relação de funcionarios do index.js e carrega o banco de funcionários*/
+            var conteudoFinal = "<table class='tableCord'><tr><th>Nome</th><th>Função</th><th>Nº Registro</th><th>Equipe Alocado</th><th></th></tr>";
+            for (var i = 0; i <= 2; i++) {
+                var pessoa = equipetodas[i].split(";");/*Atribuição á linha(tr), Coluna(td) especifica*/
+                conteudoFinal += "<tr><td>" + pessoa[1] + "</td><td> " + pessoa[2] + "</td><td> " + pessoa[3] + "</td><td> " + pessoa[4] + "</td><td><input class='buttonCord' type='button' value='Editar'></input></td></tr>";
+            }
+            document.getElementById("resultadoEquipeCoordenadores").innerHTML = conteudoFinal + "</table>";
+        }
+        /*Função de alocação de equipes atraves de array 15 colaboradores com informações agrupadas*/
+        function carregarEquipeManha() {
+            var equipemanha = BuscarArrayEquipeManha();/*Metodo que busca a relação de funcionarios do index.js e carrega o banco de funcionários*/
+            var conteudoFinal = "<table class='tableCord'><tr><th>Nome</th><th>Função</th><th>Nº Registro</th><th>Equipe Alocado</th><th></th></tr>";
+            for (var i = 0; i <= 14; i++) {
+                var pessoa = equipemanha[i].split(";");/*Atribuição á linha(tr), Coluna(td) especifica*/
+                conteudoFinal += "<tr><td>" + pessoa[1] + "</td><td> " + pessoa[2] + "</td><td> " + pessoa[3] + "</td><td>" + pessoa[4] + "</td><td><input class='buttonCord' type='button' value='Editar'></input></td></tr>";
+            }
+            document.getElementById("resultadoEquipeManha").innerHTML = conteudoFinal + "</table>";
+
+        }
+        /*Função de alocação de equipes atraves de array 15 colaboradores com informações agrupadas*/
+        function carregarEquipeTarde() {
+            var equipetarde = BuscarArrayEquipeTarde(); /*Metodo que busca a relação de funcionarios do index.js e carrega o banco de funcionários*/
+            var conteudoFinal = "<table class='tableCord'><tr><th>Nome</th><th>Função</th><th>Nº Registro</th><th>Equipe Alocado</th><th></th></tr>";
+            for (var i = 0; i <= 14; i++) {
+                var pessoa = equipetarde[i].split(";");
+                conteudoFinal += "<tr><td>" + pessoa[1] + "</td><td> " + pessoa[2] + "</td><td> " + pessoa[3] + "</td><td> " + pessoa[4] + "</td><td><input class='buttonCord' type='button' value='Editar'></input></td></tr>";
+            }
+            document.getElementById("resultadoEquipeTarde").innerHTML = conteudoFinal + "</table>";
+
+        }
+        /*Função de alocação de equipes atraves de array 15 colaboradores com informações agrupadas*/
+        function carregarEquipeNoite() {
+            var equipenoite = BuscarArrayEquipeNoite();/*Metodo que busca a relação de funcionarios do index.js e carrega o banco de funcionários*/
+            var conteudoFinal = "<table class='tableCord'><tr><th>Nome</th><th>Função</th><th>Nº Registro</th><th>Equipe Alocado</th><th></th></tr>";
+            for (var i = 0; i <= 14; i++) {
+                var pessoa = equipenoite[i].split(";");
+                conteudoFinal += "<tr><td>" + pessoa[1] + "</td><td> " + pessoa[2] + "</td><td> " + pessoa[3] + "</td><td> " + pessoa[4] + "</td><td><input class='buttonCord' type='button' value='Editar'></input></td></tr>";
+            }
+            document.getElementById("resultadoEquipeNoite").innerHTML = conteudoFinal + "</table>";
+
+        }
+
+        function VoltarPagina() {
+            var urlParams = new URLSearchParams(window.location.search);
+            var codigopessoa = urlParams.get("codigopessoa");/*captura do valor propriedade*/
+            var tipo = urlParams.get("tipo"); /*captura  do valor propriedade (categoria F/C)*/
+            window.location.href = "SelecCoordenacao.html?codigopessoa=" + codigopessoa + "&tipo=" + tipo;
+
+        }
+    </script>
+</body>
+
+</html>
