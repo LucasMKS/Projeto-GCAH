@@ -12,7 +12,7 @@ Projeto UC: Usabilidade, Desenvolvimento Web, Mobile e Jogos 3º Período - ADS 
 </p>
 
 <p align="center">
-  <img alt="License" src="./imagem/logo.png"  width="400" height="400">
+  <img alt="License" src="./imagem/GCAH01.png"  width="400" height="400">
 </p>
 
 ## 🚀 Tecnologias
