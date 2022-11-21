@@ -1,7 +1,7 @@
 <h1 align="center"> GCAH - Gestor de equipes de Cuidado e Assistência Hospitalar </h1>
 
 <p align="center">
-Projeto UC: Usabilidade, Desenvolvimento Web, Mobile e Jogos 3º Período - ADS - UNA Contagem
+Projeto UC: Usabilidade, Desenvolvimento Web, Mobile e Jogos 3º Período - UNA Contagem
 </p>
 
 <p align="center">
