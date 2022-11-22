@@ -99,6 +99,6 @@ function BuscarArrayAtividadesPorFuncao() {
 
 document.querySelector('#copyright').innerHTML =  `
 <footer>Direitos reservados a equipe de projeto: Sudário Gonçalves, Lucas Marques, Gabriel Galdino, Wesley
-            Cardoso, Gabriel Dorim - 3ºPeriodo - UNA/Contagem - 09/2022
+            Cardoso - 3ºPeriodo - UNA/Contagem - 09/2022
         </footer><br>
 `  

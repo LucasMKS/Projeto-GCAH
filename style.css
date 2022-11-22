@@ -11,6 +11,7 @@ body {
   --card-bg-color: #afd2e9;
   --border: 2px solid black;
   --card-bg-color: #acd6d6;
+  --color-nav: #ffffff;
 }
 
 body {
@@ -22,7 +23,7 @@ body {
 }
 
 nav .date {
-  color: #000000;
+  color: var(--color-nav);
   font-size: 1em;
   padding-right: 15px;
 }
@@ -31,7 +32,7 @@ nav p,
 a {
   padding-left: 15px;
   cursor: pointer;
-  color: black;
+  color: var(--color-nav);
 }
 
 nav a {
@@ -42,7 +43,7 @@ nav {
   margin: 0;
   border-bottom-left-radius: 15px;
   border-bottom-right-radius: 15px;
-  color: black;
+  color: var(--color-nav);
   background-color: #2d74a7;
   filter: drop-shadow(0px 1px 15px #000);
   display: flex;
